@@ -76,8 +76,6 @@ public:
         EXT_PUBLIC_KEY,
         EXT_SECRET_KEY,
 
-        OLD_SECRET_KEY,
-
         MAX_BASE58_TYPES
     };
 
