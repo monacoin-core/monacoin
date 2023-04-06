@@ -281,7 +281,7 @@ def do_generate(args):
         if args.nbits is not None:
             logging.error("Cannot specify --nbits and --min-nbits")
             return 1
-        args.nbits = "1e0377ae"
+        args.nbits = "1f060000"
         logging.info("Using nbits=%s" % (args.nbits))
 
     if args.set_block_time is None:
@@ -424,7 +424,7 @@ def do_generate(args):
         next_is_mine = next_block_is_mine(block.hash, my_blocks)
 
         logging.debug("Block hash %s payout to %s", block.hash, reward_addr)
-        logging.info("Mined %s at height %d; next in %s (%s)", bstr, tmpl["height"], seconds_to_hms(next_delta), ("mine" if next_is_mine else "backup"))
+        logging.info("Mined %s at height %d; bits %s; next in %s (%s)", bstr, tmpl["height"], tmpl["bits"], seconds_to_hms(next_delta), ("mine" if next_is_mine else "backup"))
         if r != "":
             logging.warning("submitblock returned %s for height %d hash %s", r, tmpl["height"], block.hash)
         lastheader = block.hash

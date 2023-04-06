@@ -335,7 +335,7 @@ public:
         consensus.nPowTargetSpacing = 1.5 * 60; // 1.5 minutes
         consensus.nPowTargetTimespanDigishield  = 1.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.fPowNoRetargeting = true;
+        consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 75; // 75% of 100
         consensus.nMinerConfirmationWindow = 100; // nPowTargetTimespan / nPowTargetSpacing
         consensus.MinBIP9WarningHeight = 0;
