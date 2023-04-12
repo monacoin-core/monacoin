@@ -3446,11 +3446,8 @@ std::vector<unsigned char> ChainstateManager::GenerateCoinbaseCommitment(CBlock&
 
 bool HasValidProofOfWork(const std::vector<CBlockHeader>& headers, const Consensus::Params& consensusParams)
 {
-    // TODO: We have to know the nHeight of the header to use GetPoWHush.
-    // return std::all_of(headers.cbegin(), headers.cend(),
-    //         [&](const auto& header) { return CheckProofOfWork(header.GetPoWHash(), header.nBits, consensusParams);});
-
-    return true;
+    return std::all_of(headers.cbegin(), headers.cend(),
+            [&](const auto& header) { return CheckProofOfWork(header.GetPoWHash(true), header.nBits, consensusParams) || CheckProofOfWork(header.GetPoWHash(false), header.nBits, consensusParams);});
 }
 
 arith_uint256 CalculateHeadersWork(const std::vector<CBlockHeader>& headers)
