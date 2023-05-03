@@ -286,7 +286,7 @@ public:
         vSeeds.clear();
 
         if (!args.IsArgSet("-signetchallenge")) {
-            bin = ParseHex("51210231b5f51797712bf3fa79e32c1fcff8b569449f8251891ce89368ab67274771f22102c580aeea5ae388c0764a8cc17b34cbdafb91349dd3e135a92c7641807e5434e452ae");
+            bin = ParseHex("512102e8d1c7458709457b2891190f0ad3a3640fdc41bb1f12be3cd5481cf4cbfcf2a521030feec0d5619c13b786a7b938f5b20f43c7a11e7ed4fb733839d7c6a6f5fa72a352ae");
 
             consensus.nMinimumChainWork = uint256{};
             consensus.defaultAssumeValid = uint256{}; // 0
@@ -365,9 +365,9 @@ public:
         nDefaultPort = 39403;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1488924140, 2122860, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1598918400, 3881977, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0xa2b106ceba3be0c6d097b2a6a6aacf9d638ba8258ae478158f449c321061e0b2"));
+        assert(consensus.hashGenesisBlock == uint256S("0x400c930bf4c5a3c4fce38554d4d1d24a61cf78316abfda22d034e2bb567335b5"));
         assert(genesis.hashMerkleRoot == uint256S("0x35e405a8a46f4dbc1941727aaf338939323c3b955232d0317f8731fe07ac4ba6"));
 
         vFixedSeeds.clear();
