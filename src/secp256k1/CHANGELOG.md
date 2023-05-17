@@ -68,8 +68,8 @@ This version was in fact never released.
 The number was given by the build system since the introduction of autotools in Jan 2014 (ea0fe5a5bf0c04f9cc955b2966b614f5f378c6f6).
 Therefore, this version number does not uniquely identify a set of source files.
 
-[unreleased]: https://github.com/monacoin-core/secp256k1/compare/v0.3.1...HEAD
-[0.3.1]: https://github.com/monacoin-core/secp256k1/compare/v0.3.0...v0.3.1
-[0.3.0]: https://github.com/monacoin-core/secp256k1/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/monacoin-core/secp256k1/compare/423b6d19d373f1224fd671a982584d7e7900bc93..v0.2.0
-[0.1.0]: https://github.com/monacoin-core/secp256k1/commit/423b6d19d373f1224fd671a982584d7e7900bc93
+[unreleased]: https://github.com/bitcoin-core/secp256k1/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/bitcoin-core/secp256k1/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/bitcoin-core/secp256k1/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/bitcoin-core/secp256k1/compare/423b6d19d373f1224fd671a982584d7e7900bc93..v0.2.0
+[0.1.0]: https://github.com/bitcoin-core/secp256k1/commit/423b6d19d373f1224fd671a982584d7e7900bc93

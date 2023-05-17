@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
   - name: Monacoin Core Security Policy
-    url: https://github.com/monacoin/monacoin/blob/master/SECURITY.md
+    url: https://github.com/bitcoin/bitcoin/blob/master/SECURITY.md
     about: View security policy
   - name: Monacoin Core Developers
-    url: https://monacoincore.org
+    url: https://bitcoincore.org
     about: Monacoin Core homepage
