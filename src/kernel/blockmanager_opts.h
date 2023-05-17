@@ -1,9 +1,9 @@
-// Copyright (c) 2022 The Bitcoin Core developers
+// Copyright (c) 2022 The Monacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_KERNEL_BLOCKMANAGER_OPTS_H
-#define BITCOIN_KERNEL_BLOCKMANAGER_OPTS_H
+#ifndef MONACOIN_KERNEL_BLOCKMANAGER_OPTS_H
+#define MONACOIN_KERNEL_BLOCKMANAGER_OPTS_H
 
 namespace kernel {
 
@@ -17,4 +17,4 @@ struct BlockManagerOpts {
 
 } // namespace kernel
 
-#endif // BITCOIN_KERNEL_BLOCKMANAGER_OPTS_H
+#endif // MONACOIN_KERNEL_BLOCKMANAGER_OPTS_H
