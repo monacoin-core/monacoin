@@ -141,6 +141,8 @@ static constexpr bool DEFAULT_I2P_ACCEPT_INCOMING{true};
 
 static const char* DEFAULT_ASMAP_FILENAME="ip_asn.map";
 
+ChainstateManager* g_chainman = nullptr;
+
 /**
  * The PID file facilities.
  */
@@ -1478,6 +1480,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 
         node.chainman = std::make_unique<ChainstateManager>(chainman_opts, blockman_opts);
         ChainstateManager& chainman = *node.chainman;
+        g_chainman = &chainman;
 
         node::ChainstateLoadOptions options;
         options.mempool = Assert(node.mempool.get());

@@ -83,7 +83,6 @@ Section -Main SEC0000
     File @abs_top_builddir@/release/@MONACOIN_CLI_NAME@@EXEEXT@
     File @abs_top_builddir@/release/@MONACOIN_TX_NAME@@EXEEXT@
     File @abs_top_builddir@/release/@MONACOIN_WALLET_TOOL_NAME@@EXEEXT@
-    File @abs_top_builddir@/release/@MONACOIN_TEST_NAME@@EXEEXT@
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd

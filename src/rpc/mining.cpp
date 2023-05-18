@@ -115,12 +115,12 @@ static RPCHelpMan getnetworkhashps()
     };
 }
 
-static bool GenerateBlock(ChainstateManager& chainman, CBlock& block, uint64_t& max_tries, std::shared_ptr<const CBlock>& block_out, bool process_new_block)
+static bool GenerateBlock(ChainstateManager& chainman, CBlock& block, uint64_t& max_tries, std::shared_ptr<const CBlock>& block_out, int nHeight, bool process_new_block)
 {
     block_out.reset();
     block.hashMerkleRoot = BlockMerkleRoot(block);
 
-    while (max_tries > 0 && block.nNonce < std::numeric_limits<uint32_t>::max() && !CheckProofOfWork(block.GetHash(), block.nBits, chainman.GetConsensus()) && !ShutdownRequested()) {
+    while (max_tries > 0 && block.nNonce < std::numeric_limits<uint32_t>::max() && !CheckProofOfWork(block.GetPoWHash(nHeight+1 >= Params().GetConsensus().nSwitchLyra2REv2_DGW), block.nBits, chainman.GetConsensus()) && !ShutdownRequested()) {
         ++block.nNonce;
         --max_tries;
     }
@@ -144,6 +144,12 @@ static bool GenerateBlock(ChainstateManager& chainman, CBlock& block, uint64_t& 
 
 static UniValue generateBlocks(ChainstateManager& chainman, const CTxMemPool& mempool, const CScript& coinbase_script, int nGenerate, uint64_t nMaxTries)
 {
+    int nHeight = 0;
+    {   // Don't keep cs_main locked
+        LOCK(cs_main);
+        nHeight = chainman.ActiveChain().Height();
+    }
+
     UniValue blockHashes(UniValue::VARR);
     while (nGenerate > 0 && !ShutdownRequested()) {
         std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler{chainman.ActiveChainstate(), &mempool}.CreateNewBlock(coinbase_script));
@@ -151,11 +157,12 @@ static UniValue generateBlocks(ChainstateManager& chainman, const CTxMemPool& me
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
 
         std::shared_ptr<const CBlock> block_out;
-        if (!GenerateBlock(chainman, pblocktemplate->block, nMaxTries, block_out, /*process_new_block=*/true)) {
+        if (!GenerateBlock(chainman, pblocktemplate->block, nMaxTries, block_out, nHeight, /*process_new_block=*/true)) {
             break;
         }
 
         if (block_out) {
+            ++nHeight;
             --nGenerate;
             blockHashes.push_back(block_out->GetHash().GetHex());
         }
@@ -383,7 +390,13 @@ static RPCHelpMan generateblock()
     std::shared_ptr<const CBlock> block_out;
     uint64_t max_tries{DEFAULT_MAX_TRIES};
 
-    if (!GenerateBlock(chainman, block, max_tries, block_out, process_new_block) || !block_out) {
+    int nHeight = 0;
+    {   // Don't keep cs_main locked
+        LOCK(cs_main);
+        nHeight = chainman.ActiveChain().Height();
+    }
+
+    if (!GenerateBlock(chainman, block, max_tries, block_out, nHeight, process_new_block) || !block_out) {
         throw JSONRPCError(RPC_MISC_ERROR, "Failed to make block.");
     }
 
